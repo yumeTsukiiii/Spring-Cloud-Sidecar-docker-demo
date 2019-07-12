@@ -1,0 +1,16 @@
+# 指定服务注册中心运行的端口号
+server:
+  port: 8080
+
+eureka:
+  # 指定服务注册中心的ip地址
+  instance:
+    hostname: localhost
+  client:
+    # 该属性为false则表示它不向服务注册中心注册自己
+    registerWithEureka: false
+    # 该属性为false则表示它不会检索其它服务
+    fetchRegistry: false
+    # 该属性指定服务注册中心的运行url地址
+    serviceUrl:
+      defaultZone: http://192.168.100.2:${server.port}/eureka/

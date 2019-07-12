@@ -1,0 +1,23 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: demo-python-sidecar
+
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://192.168.100.2:8080/eureka/}
+
+sidecar:
+  port: 4000
+  home-page-uri: http://192.168.100.4:4000
+  health-uri: http://192.168.100.4:4000/health
+  ip-address: 192.168.100.4
